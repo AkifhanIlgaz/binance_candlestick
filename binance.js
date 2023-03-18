@@ -19,15 +19,15 @@ async function main() {
   let candlesticks = await binance.candlesticks("BTCUSDT", "1h");
   candlesticks = candlesticks.map((candle) => new CandleStick(candle));
 
-  const EMA = ema(20, getPropertyFromCandles(candlesticks, "close"));
+  const EMA = ema(20, getPropertyFromCandles(candlesticks, "closePrice"));
   const CMF = chaikinMoneyFlow(
-    getPropertyFromCandles(candlesticks, "high"),
-    getPropertyFromCandles(candlesticks, "low"),
-    getPropertyFromCandles(candlesticks, "close"),
+    getPropertyFromCandles(candlesticks, "highPrice"),
+    getPropertyFromCandles(candlesticks, "lowPrice"),
+    getPropertyFromCandles(candlesticks, "closePrice"),
     getPropertyFromCandles(candlesticks, "volume")
   );
   const BollingerBands = bollingerBands(
-    getPropertyFromCandles(candlesticks, "close")
+    getPropertyFromCandles(candlesticks, "closePrice")
   );
   const BollingerBandWidth = bollingerBandsWidth(BollingerBands);
 }
