@@ -1,4 +1,4 @@
-module github.com/AkifhanIlgaz/binance_candlestick/go
+module github.com/AkifhanIlgaz/binance_candlestick
 
 go 1.20
 
