@@ -30,7 +30,9 @@ Run the executable with flags
 ```
 
 Example command to retrieve last candlestick information of BTCUSDT pair with 1h interval
+
 ```bash
 ./binance_candlestick --pair BTCUSDT --interval 1h --limit 1
 ```
 
+![example](https://github.com/AkifhanIlgaz/binance_candlestick/blob/main/example.JPG)
