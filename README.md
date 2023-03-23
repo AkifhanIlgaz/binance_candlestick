@@ -1,6 +1,6 @@
 # binance_candlestick
 
-A command-line program that retrieves candlestick information of a given pair and calculates EMA 20, CMF
+A command-line program that retrieves candlestick information of a given pair and calculates EMA 20, CMF, BollingerBandWidth
 
 # How it works ?
 
