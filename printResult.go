@@ -9,16 +9,16 @@ import (
 	"github.com/rodaine/table"
 )
 
-func printResult(candleSticks []*binance.Kline, ema, cmf *[]float64) {
+func printResult(candleSticks []*binance.Kline, ema, cmf, bbw *[]float64) {
 
 	table.DefaultHeaderFormatter = func(format string, vals ...interface{}) string {
 		return strings.ToUpper(fmt.Sprintf(format, vals...))
 	}
 
-	tbl := table.New("Open Time", "Open Price", "Low", "High", "Closing Price", "EMA", "CMF")
+	tbl := table.New("Open Time", "Open Price", "Low", "High", "Closing Price", "EMA", "CMF", "BBW")
 
 	for i, candle := range candleSticks {
-		tbl.AddRow(time.UnixMilli(candle.OpenTime).UTC(), candle.Open, candle.Low, candle.High, candle.Close, (*ema)[i], (*cmf)[i])
+		tbl.AddRow(time.UnixMilli(candle.OpenTime).UTC(), candle.Open, candle.Low, candle.High, candle.Close, (*ema)[i], (*cmf)[i], (*bbw)[i])
 	}
 
 	tbl.Print()

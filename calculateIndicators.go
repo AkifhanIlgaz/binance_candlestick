@@ -7,25 +7,33 @@ import (
 	"github.com/cinar/indicator"
 )
 
-func calculateEMAandCMF(candleSticks []*binance.Kline) ([]float64, []float64) {
-	var (
-		highs    []float64
-		lows     []float64
-		closings []float64
-		volumes  []int64
-	)
+var (
+	highs    []float64
+	lows     []float64
+	closings []float64
+	volumes  []int64
+)
 
+func parseCandleData(candleSticks []*binance.Kline) {
 	for _, candle := range candleSticks {
 		highs = append(highs, parseFloat(candle.High))
 		lows = append(lows, parseFloat(candle.Low))
 		closings = append(closings, parseFloat(candle.Close))
 		volumes = append(volumes, parseInt(candle.Volume))
 	}
+}
 
-	ema := indicator.Ema(20, closings)
-	cmf := indicator.ChaikinMoneyFlow(highs, lows, closings, volumes)
+func calculateEMA() []float64 {
+	return indicator.Ema(20, closings)
+}
 
-	return ema, cmf
+func calculateCMF() []float64 {
+	return indicator.ChaikinMoneyFlow(highs, lows, closings, volumes)
+}
+
+func calculateBBW() []float64 {
+	bandWidth, _ := indicator.BollingerBandWidth(indicator.BollingerBands(closings))
+	return bandWidth
 }
 
 func parseFloat(s string) float64 {

@@ -10,8 +10,8 @@ func main() {
 	symbol, interval, limit := parseArgs()
 
 	candleSticks := getCandleSticks(*symbol, *interval, *limit)
+	parseCandleData(candleSticks)
+	ema, cmf, bbw := calculateEMA(), calculateCMF(), calculateBBW()
 
-	ema, cmf := calculateEMAandCMF(candleSticks)
-
-	printResult(candleSticks, &ema, &cmf)
+	printResult(candleSticks, &ema, &cmf, &bbw)
 }
